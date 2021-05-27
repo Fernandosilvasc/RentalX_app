@@ -5,6 +5,16 @@ import { ICategoriesRepository } from './ICategoriesRepository';
 class CategoriesRepository implements ICategoriesRepository {
   private categories: Category[];
 
+  private static INSTANCE: CategoriesRepository;
+
+  public static getInstance(): CategoriesRepository {
+    if (!CategoriesRepository.INSTANCE) {
+      CategoriesRepository.INSTANCE = new CategoriesRepository();
+    }
+
+    return CategoriesRepository.INSTANCE;
+  }
+
   constructor() {
     this.categories = [];
   }
